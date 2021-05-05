@@ -3,6 +3,7 @@ package letscode.sarafan.controller;
 import letscode.sarafan.domain.User;
 import letscode.sarafan.repo.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ public class MainController {
         this.messageRepo = messageRepo;
     }
 
+    @Value("${spring.profiles.active}")
+    private String activeProfiles;
+
     @GetMapping
     public String main(Model model, @AuthenticationPrincipal User user) {
         HashMap<Object, Object> data = new HashMap<>();
@@ -29,13 +33,9 @@ public class MainController {
         data.put("messages", messageRepo.findAll());
 
         model.addAttribute("frontendData", data);
+        model.addAttribute("isDevMode", "dev".equals(activeProfiles));
 
         return "index";
     }
-
-    @GetMapping("login")
-        public String redir() {
-            return "redirect:https://accounts.google.com/o/oauth2/v2/auth";
-        }
 
 }
