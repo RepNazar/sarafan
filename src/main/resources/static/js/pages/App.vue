@@ -27,11 +27,16 @@ import {addHandler} from 'util/ws'
 export default {
   computed: mapState(['profile']),
   methods: {
-    ...mapMutations(['addMessageMutation', 'updateMessageMutation', 'removeMessageMutation']),
-    showMessages(){
+    ...mapMutations([
+      'addMessageMutation',
+      'updateMessageMutation',
+      'removeMessageMutation',
+      'addCommentMutation'
+    ]),
+    showMessages() {
       this.$router.push('/')
     },
-    showProfile(){
+    showProfile() {
       this.$router.push('/profile')
     }
   },
@@ -51,13 +56,21 @@ export default {
           default:
             console.error(`Unknown event type: "${data.eventType}"`)
         }
+      } else if (data.objectType === 'COMMENT') {
+        switch (data.eventType) {
+          case 'CREATE':
+            this.addCommentMutation(data.body)
+            break
+          default:
+            console.error(`Unknown event type: "${data.eventType}"`)
+        }
       } else {
         console.error(`Unknown object type: "${data.objectType}"`)
       }
     })
   },
   beforeMount() {
-    if(!this.profile){
+    if (!this.profile) {
       this.$router.replace('/auth')
     }
   }

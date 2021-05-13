@@ -57,7 +57,7 @@ public class MessageController {
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
     ) {
-        BeanUtils.copyProperties(message, messageFromDb, "id");
+        messageFromDb.setText(message.getText());
 
         Message updatedMessage = messageRepo.save(messageFromDb);
 

@@ -1,5 +1,5 @@
 <template>
-  <v-row align="center">
+  <v-row align="center" class="px-3">
     <v-text-field
         label="Add comment"
         placeholder="Write something"

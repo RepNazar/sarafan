@@ -1,7 +1,9 @@
 package letscode.sarafan.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -15,6 +17,10 @@ import java.util.List;
 @Data
 @ToString(of = {"id", "text"})
 @EqualsAndHashCode(of = {"id"})
+@JsonIdentityInfo(
+        property = "id",
+        generator = ObjectIdGenerators.PropertyGenerator.class
+)
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +36,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonView(Views.FullMessage.class)
     private User author;
 
     @OneToMany(mappedBy = "message", orphanRemoval = true)

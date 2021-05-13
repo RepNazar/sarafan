@@ -26,7 +26,7 @@
 import {mapState} from 'vuex'
 
 export default {
-  name: "Profile",
+        name: 'Profile',
   computed: mapState(['profile'])
 }
 </script>

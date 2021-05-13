@@ -22,6 +22,9 @@ public class MainController {
     private final MessageRepo messageRepo;
     private final ObjectWriter writer;
 
+    @Value("${spring.profiles.active}")
+    private String activeProfiles;
+
     @Autowired
     public MainController(MessageRepo messageRepo, ObjectMapper objectMapper) {
         this.messageRepo = messageRepo;
@@ -29,9 +32,6 @@ public class MainController {
                 .setConfig(objectMapper.getSerializationConfig())
                 .writerWithView(Views.FullMessage.class);
     }
-
-    @Value("${spring.profiles.active}")
-    private String activeProfiles;
 
     @GetMapping
     public String main(Model model, @AuthenticationPrincipal User user) throws JsonProcessingException {
