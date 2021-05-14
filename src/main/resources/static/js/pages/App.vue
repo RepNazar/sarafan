@@ -2,11 +2,17 @@
   <v-app>
     <v-app-bar app>
       <v-app-bar-title>Sarafan</v-app-bar-title>
-      <v-btn text v-if="profile" :disabled="$route.path === '/'" @click="showMessages">
+      <v-btn text
+             v-if="profile"
+             :disabled="$route.path === '/'"
+             @click="showMessages">
         Messages
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn text v-if="profile" :disabled="$route.path === '/profile'" @click="showProfile">
+      <v-btn text
+             v-if="profile"
+             :disabled="$route.path === '/user'"
+             @click="showProfile">
         {{ profile.name }}
       </v-btn>
       <v-btn v-if="profile" icon href="/logout">
@@ -37,7 +43,7 @@ export default {
       this.$router.push('/')
     },
     showProfile() {
-      this.$router.push('/profile')
+      this.$router.push('/user')
     }
   },
   created() {

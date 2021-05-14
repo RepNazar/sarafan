@@ -16,6 +16,7 @@
 import {mapActions} from 'vuex'
 
 export default {
+  name: 'MessageForm',
   props: ['messageAttr'],
   data() {
     return {
@@ -49,6 +50,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

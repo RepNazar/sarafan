@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         messages,
+        profile,
         ...frontendData
     },
     getters: {
@@ -102,7 +103,7 @@ export default new Vuex.Store({
             commit('addCommentMutation', data)
         },
         async loadPageAction({commit, state}) {
-            if (state.currentPage < state.totalPages -1) {
+            if (state.currentPage < state.totalPages - 1) {
                 const response = await messagesApi.page(state.currentPage + 1)
                 const data = await response.json()
 

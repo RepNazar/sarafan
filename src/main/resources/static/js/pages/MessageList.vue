@@ -15,9 +15,10 @@
 import {mapGetters} from 'vuex'
 import MessageRow from 'components/messages/MessageRow.vue'
 import MessageForm from 'components/messages/MessageForm.vue'
-import LazyLoader from "components/LazyLoader.vue";
+import LazyLoader from 'components/LazyLoader.vue'
 
 export default {
+  name: 'MessageList',
   components: {
     MessageRow,
     MessageForm,
@@ -37,6 +38,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
