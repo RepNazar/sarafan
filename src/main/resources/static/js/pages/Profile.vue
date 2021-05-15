@@ -70,6 +70,7 @@ export default {
     },
     async updateProfile() {
       const id = this.$route.params.id || this.$store.state.profile.id
+
       const data = await profileApi.get(id)
       this.profile = await data.json()
 

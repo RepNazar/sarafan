@@ -13,10 +13,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("message")
 public class MessageController {
-    public static final int MESSAGES_PER_PAGE = 3;
+    public static final int MESSAGES_PER_PAGE = 5;
 
     private final MessageService messageService;
 
@@ -43,7 +45,10 @@ public class MessageController {
 
     @PostMapping
     @JsonView(Views.FullMessage.class)
-    public Message create(@RequestBody Message message, @AuthenticationPrincipal User user) {
+    public Message create(
+            @RequestBody Message message,
+            @AuthenticationPrincipal User user
+    ) throws IOException {
         return messageService.create(message, user);
     }
 
@@ -52,7 +57,7 @@ public class MessageController {
     public Message update(
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
-    ) {
+    ) throws IOException {
         return messageService.update(messageFromDb, message);
     }
 

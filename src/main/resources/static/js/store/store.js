@@ -23,6 +23,7 @@ export default new Vuex.Store({
         },
         updateMessageMutation(state, message) {
             const updateIndex = state.messages.findIndex(item => item.id === message.id)
+
             state.messages = [
                 ...state.messages.slice(0, updateIndex),
                 message,

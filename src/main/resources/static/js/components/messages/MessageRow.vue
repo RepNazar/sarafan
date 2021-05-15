@@ -1,11 +1,12 @@
 <template>
   <v-card class="my-2">
     <v-card-text primary-title>
-      <user-link :user="message.author" size = "48" />
+      <user-link :user="message.author" size="48"></user-link>
       <div class="pt-3">
         {{ message.text }}
       </div>
     </v-card-text>
+    <media v-if="message.link" :message="message"></media>
     <v-card-actions>
       <v-btn small text rounded @click="edit">Edit</v-btn>
       <v-btn icon @click="del">
@@ -23,11 +24,12 @@
 import {mapActions} from 'vuex'
 import CommentList from 'components/comment/CommentList.vue'
 import UserLink from 'components/UserLink.vue'
+import Media from 'components/media/Media.vue'
 
 export default {
   name: 'MessageRow',
   props: ['message', 'editMessage'],
-  components: {UserLink, CommentList},
+  components: {Media, UserLink, CommentList},
   methods: {
     ...mapActions(['removeMessageAction']),
     edit() {

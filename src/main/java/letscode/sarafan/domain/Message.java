@@ -43,4 +43,12 @@ public class Message {
     @JsonView(Views.FullMessage.class)
     private List<Comment> comments;
 
+    @JsonView(Views.FullMessage.class)
+    private String link;
+    @JsonView(Views.FullMessage.class)
+    private String linkTitle;
+    @JsonView(Views.FullMessage.class)
+    private String linkDescription;
+    @JsonView(Views.FullMessage.class)
+    private String linkCover;
 }
