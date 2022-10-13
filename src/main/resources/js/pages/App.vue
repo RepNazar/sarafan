@@ -8,6 +8,12 @@
              @click="showMessages">
         Messages
       </v-btn>
+      <v-btn text
+             v-if="profile"
+             :disabled="$route.path === '/explore'"
+             @click="showProfiles">
+        Explore
+      </v-btn>
       <v-spacer></v-spacer>
       <v-btn text
              v-if="profile"
@@ -44,6 +50,9 @@ export default {
     },
     showProfile() {
       this.$router.push('/user')
+    },
+    showProfiles() {
+      this.$router.push('/explore')
     }
   },
   created() {

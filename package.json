@@ -6,7 +6,8 @@
   "author": "skillfool <Repyanski@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve"
+    "start": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -22,6 +23,7 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.4",
     "serve": "^11.3.2",
     "vue-loader": "^15.9.6",
@@ -29,6 +31,7 @@
     "vue-template-compiler": "^2.6.12",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   }
 }

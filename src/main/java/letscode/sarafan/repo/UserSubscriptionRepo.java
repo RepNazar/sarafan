@@ -12,4 +12,8 @@ public interface UserSubscriptionRepo extends JpaRepository<UserSubscription, Us
     List<UserSubscription> findAllByChannel(User channel);
 
     UserSubscription findByChannelAndSubscriber(User channel, User subscriber);
+
+    List<UserSubscription> findAllBySubscriberAndChannel_NameContainsIgnoreCase(User subscriber, String filter);
+    List<UserSubscription> findAllByChannelAndSubscriber_NameContainsIgnoreCase(User channel, String filter);
+
 }

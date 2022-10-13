@@ -40,6 +40,9 @@ public class ProfileService {
     public List<UserSubscription> getSubscribers(User channel) {
         return userSubscriptionRepo.findAllByChannel(channel);
     }
+    public List<UserSubscription> getSubscriptions(User channel) {
+        return userSubscriptionRepo.findAllBySubscriber(channel);
+    }
 
     public UserSubscription changeSubscriptionStatus(User channel, User subscriber) {
         UserSubscription subscription = userSubscriptionRepo.findByChannelAndSubscriber(channel, subscriber);
@@ -47,4 +50,19 @@ public class ProfileService {
 
         return userSubscriptionRepo.save(subscription);
     }
+    public List<User> getAllUsers() {
+        return userDetailsRepo.findAll();
+    }
+    public List<User> getAllUsersByNameContains(String text) {
+        return userDetailsRepo.findAllByNameContainsIgnoreCase(text);
+    }
+
+    public List<UserSubscription> getSubscribersByNameContains(User channel, String filter) {
+        return userSubscriptionRepo.findAllByChannelAndSubscriber_NameContainsIgnoreCase(channel, filter);
+    }
+
+    public List<UserSubscription> getSubscriptionsByNameContains(User channel, String filter) {
+        return userSubscriptionRepo.findAllBySubscriberAndChannel_NameContainsIgnoreCase(channel, filter);
+    }
+
 }

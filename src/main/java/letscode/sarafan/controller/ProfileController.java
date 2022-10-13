@@ -27,6 +27,16 @@ public class ProfileController {
         return user;
     }
 
+    @GetMapping("list")
+    @JsonView(Views.IdName.class)
+    public List<User> list(@RequestParam(name = "filter", required = false) String filter) {
+        if (filter == null || filter.isEmpty()) {
+            return profileService.getAllUsers();
+        } else {
+            return profileService.getAllUsersByNameContains(filter);
+        }
+    }
+
     @PostMapping("change-subscription/{channelId}")
     @JsonView(Views.FullProfile.class)
     public User changeSubscription(
@@ -42,8 +52,30 @@ public class ProfileController {
 
     @GetMapping("subscribers/{channelId}")
     @JsonView(Views.IdName.class)
-    public List<UserSubscription> subscribers(@PathVariable("channelId") User channel) {
-        return profileService.getSubscribers(channel);
+    public List<UserSubscription> subscribers(
+            @PathVariable("channelId") User channel,
+            @RequestParam(name = "filter", required = false) String filter
+    ) {
+        if (filter == null || filter.isEmpty()) {
+            return profileService.getSubscribers(channel);
+        } else {
+            return profileService.getSubscribersByNameContains(channel, filter);
+        }
+
+    }
+
+    @GetMapping("subscriptions")
+    @JsonView(Views.IdName.class)
+    public List<UserSubscription> subscriptions(
+            @AuthenticationPrincipal User channel,
+            @RequestParam(name = "filter", required = false) String filter
+    ) {
+        if (filter == null || filter.isEmpty()) {
+            return profileService.getSubscriptions(channel);
+        } else {
+            return profileService.getSubscriptionsByNameContains(channel, filter);
+        }
+
     }
 
     @PostMapping("change-subscription-status/{subscriberId}")

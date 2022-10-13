@@ -55,14 +55,16 @@ public class MessageController {
     @PutMapping("{id}")
     @JsonView(Views.FullMessage.class)
     public Message update(
+            @AuthenticationPrincipal User user,
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
     ) throws IOException {
-        return messageService.update(messageFromDb, message);
+        return messageService.update(messageFromDb, message, user);
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") Message message) {
-        messageService.delete(message);
+    public void delete(@PathVariable("id") Message message,
+                       @AuthenticationPrincipal User user) {
+        messageService.delete(message, user);
     }
 }

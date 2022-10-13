@@ -76,7 +76,11 @@ public class MessageService {
         return updatedMessage;
     }
 
-    public Message update(Message messageFromDb, Message message) throws IOException {
+    public Message update(Message messageFromDb, Message message, User currentUser) throws IOException {
+        if (!messageFromDb.getAuthor().getId().equals(currentUser.getId())) {
+            throw new RuntimeException();
+        }
+
         messageFromDb.setText(message.getText());
         fillMeta(messageFromDb);
 
@@ -87,7 +91,10 @@ public class MessageService {
         return updatedMessage;
     }
 
-    public void delete(Message message) {
+    public void delete(Message message, User currentUser) {
+        if (!message.getAuthor().getId().equals(currentUser.getId())) {
+            throw new RuntimeException();
+        }
         messageRepo.delete(message);
         wsSender.accept(EventType.REMOVE, message);
     }

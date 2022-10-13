@@ -1,6 +1,18 @@
 <template>
   <v-container>
-    <v-layout justify-space-around>
+    <v-layout column align-center>
+      <v-row align="center">
+        <v-text-field
+            label="Search"
+            placeholder="Write something"
+            v-model="text"
+            @keyup.enter="filter"
+            size="24"
+        />
+        <v-btn icon @click="filter" class="mt-1">
+          <v-icon>search</v-icon>
+        </v-btn>
+      </v-row>
 
       <v-list>
         <v-list-item v-for="item in subscriptions">
@@ -23,7 +35,8 @@ export default {
   components: {UserLink},
   data() {
     return {
-      subscriptions: []
+      subscriptions: [],
+      text: ''
     }
   },
   methods: {
@@ -42,11 +55,14 @@ export default {
         },
         ...this.subscriptions.slice(subscriptionIndex + 1)
       ]
+    },
+    async filter() {
+      const resp = await profileApi.subscriberList(this.$store.state.profile.id, this.text)
+      this.subscriptions = await resp.json()
     }
-  },
+},
   async beforeMount() {
-    const resp = await profileApi.subscriberList(this.$store.state.profile.id)
-    this.subscriptions = await resp.json()
+    await this.filter()
   }
 }
 </script>

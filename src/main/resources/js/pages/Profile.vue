@@ -13,7 +13,13 @@
               <v-flex>{{ profile.locale }}</v-flex>
               <v-flex>{{ profile.gender }}</v-flex>
               <v-flex>{{ profile.lastVisit }}</v-flex>
-              <v-flex>
+              <router-link
+                  v-if="isMyProfile"
+                  :to="`/subscriptions`"
+              >
+                {{ profile.subscriptions && profile.subscriptions.length }} subscriptions
+              </router-link>
+              <v-flex v-else>
                 {{ profile.subscriptions && profile.subscriptions.length }} subscriptions
               </v-flex>
               <router-link
@@ -28,7 +34,7 @@
             </v-layout>
           </v-flex>
         </v-layout>
-        <v-btn v-if="!isMyProfile" @click="changeSubscription">
+        <v-btn class="mt-4" v-if="!isMyProfile" @click="changeSubscription">
           {{ isISubscribed ? 'Unsubscribe' : 'Subscribe' }}
         </v-btn>
       </v-flex>
