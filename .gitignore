@@ -1,3 +1,6 @@
+node_modules
+/src/main/resources/static/js/
+
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -25,7 +28,3 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-
-###
-node_modules
-/src/main/resources/static/js/

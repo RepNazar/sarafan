@@ -34,7 +34,7 @@
             </v-layout>
           </v-flex>
         </v-layout>
-        <v-btn class="mt-4" v-if="!isMyProfile" @click="changeSubscription">
+        <v-btn v-if="!isMyProfile" @click="changeSubscription">
           {{ isISubscribed ? 'Unsubscribe' : 'Subscribe' }}
         </v-btn>
       </v-flex>

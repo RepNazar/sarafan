@@ -8,8 +8,8 @@
     </v-card-text>
     <media v-if="message.link" :message="message"></media>
     <v-card-actions v-if="message.author && message.author.id === this.$store.state.profile.id">
-      <v-btn small text rounded @click="edit">Edit</v-btn>
-      <v-btn icon @click="del">
+      <v-btn value="Edit" small flat rounded @click="edit">Edit</v-btn>
+      <v-btn icon @click="del" small>
         <v-icon>delete</v-icon>
       </v-btn>
     </v-card-actions>

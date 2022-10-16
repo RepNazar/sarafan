@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/user/${user.id}`" class="px-3">
+  <router-link :to="`/user/${user.id}`">
     <v-avatar v-if="user && user.userpic" :size="`${size || 36}px`">
       <img :src="user.userpic" :alt="user.name">
     </v-avatar>

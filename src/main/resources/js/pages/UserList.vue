@@ -1,23 +1,22 @@
 <template>
   <v-container>
     <v-layout column align-center>
-      <v-row align="center">
-        <v-text-field
-            label="Search"
-            placeholder="Write something"
-            v-model="text"
-            @keyup.enter="filter"
-            size="24"
-        />
-        <v-btn icon @click="filter" class="mt-1">
-          <v-icon>search</v-icon>
-        </v-btn>
-      </v-row>
-
       <v-list>
-        <v-list-item v-for="item in profiles">
-          <user-link :user="item" size="24"></user-link>
-        </v-list-item>
+        <v-list-tile>
+          <v-text-field
+              label="Search"
+              placeholder="Write something"
+              v-model="text"
+              @keyup.enter="filter"
+          />
+          <v-btn icon @click="filter" class="mt-1">
+            <v-icon>search</v-icon>
+          </v-btn>
+        </v-list-tile>
+
+        <v-list-tile v-for="item in profiles" :key="item.id">
+          <user-link :user="item"></user-link>
+        </v-list-tile>
       </v-list>
     </v-layout>
   </v-container>

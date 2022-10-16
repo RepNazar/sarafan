@@ -18,8 +18,5 @@ new Vue({
     el: '#app',
     store,
     router,
-    vuetify: new Vuetify({
-        theme: {default: true}
-    }),
     render: a => a(App)
 })

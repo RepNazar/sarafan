@@ -20,9 +20,9 @@ import LazyLoader from 'components/LazyLoader.vue'
 export default {
   name: 'MessageList',
   components: {
+    LazyLoader,
     MessageRow,
-    MessageForm,
-    LazyLoader
+    MessageForm
   },
   data() {
     return {

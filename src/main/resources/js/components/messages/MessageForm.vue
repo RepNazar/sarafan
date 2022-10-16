@@ -1,15 +1,15 @@
 <template>
-  <v-row align="center">
+    <v-layout row>
     <v-text-field
         label="New message"
         placeholder="Write something"
         v-model="text"
         @keyup.enter="save"
     />
-    <v-btn text @click="save" class="mt-1">
+        <v-btn @click="save">
       Save
     </v-btn>
-  </v-row>
+    </v-layout>
 </template>
 
 <script>

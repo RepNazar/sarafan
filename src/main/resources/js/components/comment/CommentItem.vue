@@ -1,14 +1,15 @@
 <template>
-  <v-list-item>
-    <user-link :user="comment.author"></user-link>
-    <v-list-item-content>
-      <v-list-item-title>{{ comment.text }}</v-list-item-title>
-    </v-list-item-content>
-  </v-list-item>
+  <v-list-tile>
+    <user-link :user="comment.author" class=px-3></user-link>
+    <v-list-tile-content>
+      <v-list-tile-title>{{ comment.text }}</v-list-tile-title>
+    </v-list-tile-content>
+  </v-list-tile>
 </template>
 
 <script>
 import UserLink from 'components/UserLink.vue'
+
 export default {
   name: 'CommentItem',
   components: {UserLink},

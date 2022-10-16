@@ -1,21 +1,21 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-app-bar-title>Sarafan</v-app-bar-title>
-      <v-btn text
+        <v-toolbar app>
+            <v-toolbar-title>Sarafan</v-toolbar-title>
+            <v-btn flat
              v-if="profile"
              :disabled="$route.path === '/'"
              @click="showMessages">
         Messages
       </v-btn>
-      <v-btn text
+      <v-btn flat
              v-if="profile"
              :disabled="$route.path === '/explore'"
              @click="showProfiles">
         Explore
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn text
+      <v-btn flat
              v-if="profile"
              :disabled="$route.path === '/user'"
              @click="showProfile">
@@ -24,7 +24,7 @@
       <v-btn v-if="profile" icon href="/logout">
         <v-icon>exit_to_app</v-icon>
       </v-btn>
-    </v-app-bar>
+        </v-toolbar>
     <v-content>
       <router-view></router-view>
     </v-content>
